@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentinel — AI Business Autopilot</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:#070b14;color:#eef2ff}
+    .app{max-width:1400px;margin:auto;padding:28px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:46px;height:46px;border-radius:14px;background:#fff;color:#070b14;display:grid;place-items:center;font-weight:900;font-size:22px}
+    h1{margin:0;font-size:24px}
+    .sub{color:#8791a8;font-size:13px;margin-top:4px}
+    .status{border:1px solid #263149;border-radius:999px;padding:9px 15px;color:#8ff0bb;font-size:13px}
+    .hero{background:linear-gradient(135deg,#101827,#0b111e);border:1px solid #202b40;border-radius:24px;padding:28px;margin-bottom:20px}
+    .hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+    .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#7e8aa3}
+    .hero h2{font-size:32px;margin:8px 0}
+    .hero p{color:#9da8bd;max-width:700px;line-height:1.6}
+    button{background:#fff;border:0;border-radius:12px;padding:13px 20px;font-weight:800;cursor:pointer}
+    button:hover{opacity:.88}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+    .card{background:#0d1422;border:1px solid #202b40;border-radius:18px;padding:20px}
+    .label{color:#8791a8;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+    .value{font-size:30px;font-weight:800;margin:10px 0}
+    .danger{color:#ff8d8d}
+    .good{color:#8ff0bb}
+    .muted{color:#8b96aa;font-size:13px}
+    .content{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}
+    .section-title{font-size:16px;font-weight:800;margin-bottom:16px}
+    .scenario{display:grid;grid-template-columns:1fr auto;gap:8px;padding:16px 0;border-bottom:1px solid #202b40}
+    .scenario:last-child{border-bottom:0}
+    .scenario strong{font-size:16px}
+    .money{font-weight:800}
+    .bar{height:9px;background:#202b40;border-radius:99px;overflow:hidden;margin-top:9px}
+    .fill{height:100%;border-radius:99px;background:#dce5ff}
+    .policy{display:flex;justify-content:space-between;align-items:center;padding:14px;background:#111a2a;border-radius:14px;margin-bottom:10px}
+    .badge{padding:7px 10px;border-radius:999px;background:#143624;color:#8ff0bb;font-size:12px;font-weight:800}
+    .flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .step{padding:9px 12px;border:1px solid #28354d;border-radius:9px;color:#aab4c8;font-size:12px}
+    .step.active{border-color:#fff;color:#fff}
+    .audit{font-family:monospace;color:#aab4c8;font-size:12px;line-height:1.9}
+    .audit span{color:#8ff0bb}
+    .result{display:none;margin-top:18px;padding:16px;border-radius:14px;background:#10251b;border:1px solid #27563d}
+    .result.show{display:block}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.content{grid-template-columns:1fr}}
+    @media(max-width:600px){.app{padding:16px}.grid{grid-template-columns:1fr}.hero-top{flex-direction:column}.hero h2{font-size:25px}}
+  </style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+  <div class="brand">
+    <div class="logo">S</div>
+    <div>
+      <h1>Sentinel</h1>
+      <div class="sub">AI Business Autopilot · Merchant Decision Intelligence</div>
+    </div>
+  </div>
+  <div class="status">● System Operational</div>
+</header>
+
+<section class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="eyebrow">Live merchant intelligence · NovaKart</div>
+      <h2>Payment degradation detected</h2>
+      <p>
+        Sentinel detected a significant payment-success anomaly, predicted
+        continued disruption, quantified revenue exposure, simulated
+        interventions, and prepared a policy-controlled action.
+      </p>
+    </div>
+    <button onclick="runSentinel()">Run Sentinel</button>
+  </div>
+
+  <div class="flow">
+    <div class="step active">1 Observe</div>
+    <div class="step">2 Predict</div>
+    <div class="step">3 Quantify</div>
+    <div class="step">4 Explain</div>
+    <div class="step">5 Simulate</div>
+    <div class="step">6 Decide</div>
+    <div class="step">7 Policy Check</div>
+    <div class="step">8 Act</div>
+    <div class="step">9 Verify</div>
+    <div class="step">10 Audit</div>
+  </div>
+
+  <div id="result" class="result">
+    <strong>✓ Sentinel action verified</strong>
+    <div class="muted" style="margin-top:6px">
+      Payment success rate improved from 91.2% to 97.1%.
+      Estimated exposure reduced from ₹1,84,200 to ₹41,700.
+    </div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Payment success</div>
+    <div class="value danger">91.2%</div>
+    <div class="muted">Baseline 97.8% · ↓ 6.6 pts</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Continuation probability</div>
+    <div class="value">94%</div>
+    <div class="muted">High risk of continued disruption</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Revenue exposure</div>
+    <div class="value danger">₹1,84,200</div>
+    <div class="muted">Estimated next-hour exposure</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Transactions / hour</div>
+    <div class="value">1,200</div>
+    <div class="muted">Average order value ₹1,850</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="card">
+    <div class="section-title">Digital Twin · Intervention Simulation</div>
+
+    <div class="scenario">
+      <div>
+        <strong>Do Nothing</strong>
+        <div class="bar"><div class="fill" style="width:100%"></div></div>
+      </div>
+      <div class="money danger">₹1,84,200</div>
+    </div>
+
+    <div class="scenario">
+      <div>
+        <strong>Intervention A</strong>
+        <div class="bar"><div class="fill" style="width:23%"></div></div>
+      </div>
+      <div class="money good">₹41,700</div>
+    </div>
+
+    <div class="scenario">
+      <div>
+        <strong>Intervention B</strong>
+        <div class="bar"><div class="fill" style="width:38%"></div></div>
+      </div>
+      <div class="money">₹69,400</div>
+    </div>
+
+    <p class="muted">
+      Sentinel recommends Intervention A because it minimizes projected
+      revenue exposure under the current evidence and policy constraints.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Policy Engine</div>
+
+    <div class="policy">
+      <span>AI confidence</span>
+      <strong>92%</strong>
+    </div>
+
+    <div class="policy">
+      <span>Minimum confidence</span>
+      <strong>90%</strong>
+    </div>
+
+    <div class="policy">
+      <span>Automatic action limit</span>
+      <strong>₹10,000</strong>
+    </div>
+
+    <div class="policy">
+      <span>Decision</span>
+      <span class="badge">APPROVED</span>
+    </div>
+
+    <div class="section-title" style="margin-top:24px">Evidence</div>
+
+    <div class="audit">
+      UPI failures&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>+16.2%</span><br>
+      Bank-A failures&nbsp;&nbsp;&nbsp;&nbsp;<span>+31.0%</span><br>
+      Mobile failures&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>+14.0%</span><br>
+      Returning users&nbsp;&nbsp;&nbsp;<span>+11.8%</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="card" style="margin-top:20px">
+  <div class="section-title">Verification & Audit Trail</div>
+
+  <div class="grid" style="margin:0">
+    <div>
+      <div class="label">Before</div>
+      <div class="value danger">91.2%</div>
+      <div class="muted">Success rate</div>
+    </div>
+
+    <div>
+      <div class="label">After</div>
+      <div class="value good">97.1%</div>
+      <div class="muted">Verified success rate</div>
+    </div>
+
+    <div>
+      <div class="label">Exposure reduced</div>
+      <div class="value good">77%</div>
+      <div class="muted">Estimated improvement</div>
+    </div>
+
+    <div>
+      <div class="label">Status</div>
+      <div class="value good">VERIFIED</div>
+      <div class="muted">Action outcome confirmed</div>
+    </div>
+  </div>
+
+  <div class="audit" style="margin-top:15px">
+    [12:04:01] <span>OBSERVE</span> anomaly detected<br>
+    [12:04:03] <span>PREDICT</span> continuation probability = 94%<br>
+    [12:04:05] <span>QUANTIFY</span> exposure = ₹1,84,200<br>
+    [12:04:08] <span>SIMULATE</span> Intervention A selected<br>
+    [12:04:10] <span>POLICY</span> confidence 92% ≥ 90% → approved<br>
+    [12:04:12] <span>ACT</span> controlled action executed<br>
+    [12:04:18] <span>VERIFY</span> success rate = 97.1%<br>
+    [12:04:19] <span>AUDIT</span> decision recorded
+  </div>
+</div>
+
+</div>
+
+<script>
+function runSentinel(){
+  const result=document.getElementById("result");
+  result.classList.remove("show");
+
+  const steps=document.querySelectorAll(".step");
+  let i=0;
+
+  const timer=setInterval(()=>{
+    steps.forEach(s=>s.classList.remove("active"));
+    if(i<steps.length) steps[i].classList.add("active");
+    i++;
+
+    if(i>steps.length){
+      clearInterval(timer);
+      result.classList.add("show");
+    }
+  },180);
+}
+</script>
+
+</body>
+</html>
