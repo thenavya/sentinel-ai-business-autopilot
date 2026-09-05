@@ -1,99 +1,150 @@
-# Sentinel — AI Business Autopilot
+# 🛡️ Sentinel — AI Business Autopilot
 
-Sentinel is a predictive merchant decision-and-action layer that detects revenue-impacting problems before they become major losses, predicts likely impact, simulates permitted interventions, and safely recommends or executes the best response.
+> **Predict problems. Quantify impact. Simulate decisions. Act safely. Verify outcomes.**
 
-## Core loop
+Sentinel is a predictive merchant decision-and-action layer that helps businesses detect revenue-impacting problems before they become major losses.
+
+Instead of waiting for a merchant to discover that payments, checkout, subscriptions, or other business signals have deteriorated, Sentinel continuously analyzes operational signals, predicts what may happen next, estimates financial exposure, evaluates possible interventions, validates the recommended action against deterministic policies, and verifies the result.
+
+---
+
+## 🚨 The Problem
+
+Most merchant and payment systems are reactive.
+
+A typical workflow looks like:
+
+**Problem occurs → Merchant notices → Team investigates → Team decides → Action is taken**
+
+By the time the problem is discovered, revenue may already have been lost.
+
+Sentinel changes the workflow to:
+
 **Observe → Predict → Quantify → Explain → Simulate → Decide → Policy Check → Act → Verify → Audit**
 
-## MVP: NovaKart payment degradation
-Sentinel demonstrates a merchant whose payment success rate falls from 97.8% to 91.2%.
+The goal is not simply to detect an anomaly.
 
-The system:
-1. Detects abnormal payment performance.
-2. Estimates probability that the disruption will continue.
-3. Estimates revenue exposure.
-4. Produces evidence-backed root-cause factors.
-5. Compares intervention scenarios against a digital-twin state.
-6. Applies a deterministic policy engine.
-7. Executes a permitted simulated action.
-8. Verifies the measured outcome.
-9. Stores an audit trail.
+The goal is to answer:
 
-> Sentinel does not claim to control all of Razorpay's payment infrastructure. Razorpay APIs/webhooks are used only where genuinely supported; unsupported actions are represented in a controlled simulation.
+> **"What is likely to happen, how much could it matter, what should we do, and are we allowed to do it?"**
 
-## Architecture
+---
+
+# 💡 What Sentinel Does
+
+Sentinel combines predictive analytics, financial impact estimation, simulation, deterministic policies, and controlled execution.
+
+### 1. Observe
+
+Detect abnormal changes in merchant signals.
+
+Example:
+
+- Baseline payment success rate: **97.8%**
+- Current payment success rate: **91.2%**
+- Degradation: **6.6 percentage points**
+
+---
+
+### 2. Predict
+
+Estimate the probability that the disruption will continue.
+
+Current NovaKart demo:
+
+**99% continued-disruption probability**
+
+> The current probability model is an MVP demonstration model. A production system would use a trained model on historical merchant data.
+
+---
+
+### 3. Quantify
+
+Translate operational degradation into an estimated financial exposure.
+
+The MVP estimates one-hour revenue exposure using:
+
+**Affected transaction volume × failure rate × average order value**
+
+For the NovaKart demonstration:
+
+**Estimated exposure: ₹1,95,360**
+
+This is a decision-support estimate, not a guaranteed financial loss.
+
+---
+
+### 4. Explain
+
+Sentinel surfaces evidence associated with the degradation.
+
+Example signals:
+
+| Signal | Change |
+|---|---:|
+| UPI | +16.2% |
+| Bank-A | +31.0% |
+| Mobile | +14.0% |
+| Returning users | +11.8% |
+
+These signals help the merchant understand **why Sentinel believes the problem matters**.
+
+---
+
+### 5. Simulate
+
+Sentinel uses a Digital Twin-style simulation to compare possible outcomes before taking action.
+
+For NovaKart:
+
+| Scenario | Simulated Success Rate | Estimated Exposure |
+|---|---:|---:|
+| Do nothing | 91.2% | ₹1,95,360 |
+| Intervention A | 97.1% | ₹64,380 |
+| Intervention B | 95.2% | ₹1,06,560 |
+
+The system selects:
+
+### ✅ Intervention A
+
+because it produces the lowest modeled exposure among the simulated permitted scenarios.
+
+> These are modeled outcomes in the MVP, not claims of live payment-network changes.
+
+---
+
+# 🔐 Policy Engine
+
+Sentinel does **not** allow an AI model to directly control business actions.
+
+The architecture separates intelligence from authority.
+
+### AI / Intelligence Layer
+
+AI can:
+
+- analyze signals
+- predict outcomes
+- explain evidence
+- recommend actions
+- compare scenarios
+
+### Deterministic Policy Layer
+
+Software decides whether an action is allowed based on:
+
+- confidence threshold
+- action-value limit
+- risk level
+- merchant automation settings
+
+For example:
 
 ```text
-Payment events / synthetic data
-            |
-            v
-      Observation Layer
-            |
-            v
-   ML + Statistical Engine
-   | anomaly | prediction |
-   | impact | risk score  |
-            |
-            +---------> Evidence
-            |               |
-            v               v
-       Digital Twin ----> LLM Explanation
-            |
-            v
-       Scenario Engine
-            |
-            v
-      Decision Engine
-            |
-            v
-      Policy Engine
-       /          \
-    BLOCK        APPROVE
-                    |
-                    v
-                 Executor
-                    |
-                    v
-               Verification
-                    |
-                    v
-                Audit Log
-```
-
-## Tech stack
-- Python
-- FastAPI
-- Pandas / NumPy / scikit-learn
-- React/Next.js (planned dashboard)
-- PostgreSQL/Azure SQL (planned persistence)
-- Azure / Azure OpenAI where useful
-- Razorpay Test Mode/webhooks where genuinely supported
-
-## Run backend
-
-```bash
-cd backend
-python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-Open `http://127.0.0.1:8000/docs`.
-
-## Demo endpoints
-- `GET /health`
-- `GET /api/v1/demo/novakart`
-- `POST /api/v1/analyze`
-- `POST /api/v1/simulate`
-- `POST /api/v1/policy/check`
-- `POST /api/v1/execute`
-- `POST /api/v1/verify`
-
-## Important product boundary
-The AI proposes. Policy controls. Software executes. Verification checks the result.
-
-This repository is an MVP/hackathon implementation, not a production payment-routing system.
+Confidence ≥ minimum threshold
+AND
+Action value ≤ automatic-action limit
+AND
+High-risk = false
+AND
+Automatic actions = enabled
