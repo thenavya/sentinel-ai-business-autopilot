@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Sentinel — AI Business Autopilot</title>
 
   <style>
@@ -177,11 +176,6 @@
       overflow-x: auto;
     }
 
-    .audit span {
-      color: #7ee7b2;
-      font-weight: bold;
-    }
-
     .button-area {
       text-align: center;
       margin: 30px 0;
@@ -215,6 +209,7 @@
       border-radius: 12px;
       background: #10271e;
       border: 1px solid #2f805d;
+      text-align: left;
     }
 
     #result.show {
@@ -257,21 +252,15 @@
 
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero">
     <div class="logo">🛡️ Sentinel</div>
-
-    <div class="subtitle">
-      AI Business Autopilot
-    </div>
-
+    <div class="subtitle">AI Business Autopilot</div>
     <div class="badge">
       PREDICTIVE MERCHANT DECISION INTELLIGENCE
     </div>
   </div>
 
 
-  <!-- MERCHANT STATUS -->
   <div class="card">
 
     <h2>NovaKart — Payment Health</h2>
@@ -307,13 +296,13 @@
   </div>
 
 
-  <!-- SENTINEL DECISION LOOP -->
   <div class="card">
 
     <h2>Sentinel Decision Loop</h2>
 
     <div class="muted">
-      Observe → Predict → Quantify → Explain → Simulate → Decide → Policy → Act → Verify → Audit
+      Observe → Predict → Quantify → Explain → Simulate →
+      Decide → Policy → Act → Verify → Audit
     </div>
 
     <div class="steps">
@@ -323,7 +312,6 @@
       <div class="step">3. QUANTIFY</div>
       <div class="step">4. EXPLAIN</div>
       <div class="step">5. SIMULATE</div>
-
       <div class="step">6. DECIDE</div>
       <div class="step">7. POLICY</div>
       <div class="step">8. ACT</div>
@@ -335,7 +323,6 @@
   </div>
 
 
-  <!-- EVIDENCE -->
   <div class="card">
 
     <h2>🔎 Evidence & Root-Cause Signals</h2>
@@ -367,7 +354,6 @@
   </div>
 
 
-  <!-- DIGITAL TWIN -->
   <div class="card">
 
     <h2>🧪 Digital Twin — What-If Simulation</h2>
@@ -379,51 +365,30 @@
     <div class="scenario-grid">
 
       <div class="scenario">
-
         <h3>Do Nothing</h3>
-
-        <div class="label">
-          Estimated Revenue Exposure
+        <div class="label">Estimated Revenue Exposure</div>
+        <div class="value danger" id="doNothingExposure">
+          ₹1,46,520
         </div>
-
-        <div class="value danger">
-          ₹1,84,200
-        </div>
-
       </div>
 
-
       <div class="scenario selected">
-
         <h3>Intervention A</h3>
-
-        <div class="label">
-          Estimated Revenue Exposure
-        </div>
-
-        <div class="value good">
+        <div class="label">Estimated Revenue Exposure</div>
+        <div class="value good" id="interventionAExposure">
           ₹41,700
         </div>
-
         <div class="muted" style="margin-top:8px">
           ✓ Recommended
         </div>
-
       </div>
 
-
       <div class="scenario">
-
         <h3>Intervention B</h3>
-
-        <div class="label">
-          Estimated Revenue Exposure
-        </div>
-
-        <div class="value warning">
+        <div class="label">Estimated Revenue Exposure</div>
+        <div class="value warning" id="interventionBExposure">
           ₹69,400
         </div>
-
       </div>
 
     </div>
@@ -431,7 +396,6 @@
   </div>
 
 
-  <!-- POLICY ENGINE -->
   <div class="card">
 
     <h2>🔐 Policy Engine</h2>
@@ -439,122 +403,71 @@
     <div class="grid">
 
       <div class="metric">
-
-        <div class="label">
-          Decision Confidence
-        </div>
-
-        <div class="value good">
-          92%
-        </div>
-
-      </div>
-
-
-      <div class="metric">
-
-        <div class="label">
-          Minimum Required
-        </div>
-
-        <div class="value">
-          90%
-        </div>
-
-      </div>
-
-
-      <div class="metric">
-
-        <div class="label">
-          Auto Action Limit
-        </div>
-
-        <div class="value">
-          ₹10,000
-        </div>
-
-      </div>
-
-
-      <div class="metric">
-
-        <div class="label">
-          Policy Decision
-        </div>
-
-        <div class="value good">
+        <div class="label">Decision Status</div>
+        <div class="value good" id="policyStatus">
           APPROVED
         </div>
+      </div>
 
+      <div class="metric">
+        <div class="label">Minimum Confidence</div>
+        <div class="value">90%</div>
+      </div>
+
+      <div class="metric">
+        <div class="label">Auto Action Limit</div>
+        <div class="value">₹10,000</div>
+      </div>
+
+      <div class="metric">
+        <div class="label">System Principle</div>
+        <div class="value" style="font-size:18px">
+          POLICY CONTROLLED
+        </div>
       </div>
 
     </div>
 
     <div class="muted" style="margin-top:18px">
+      AI proposes. Policy controls. Software executes.
       High-risk actions require human approval.
-      Sentinel cannot bypass deterministic policy controls.
     </div>
 
   </div>
 
 
-  <!-- EXECUTION -->
   <div class="card">
 
-    <h2>⚡ Controlled Action</h2>
+    <h2>⚡ Controlled Action & Verification</h2>
 
     <div class="grid">
 
       <div class="metric">
-
-        <div class="label">
-          Before
-        </div>
-
-        <div class="value danger">
+        <div class="label">Before</div>
+        <div class="value danger" id="beforeRate">
           91.2%
         </div>
-
       </div>
 
-
       <div class="metric">
-
-        <div class="label">
-          After
-        </div>
-
-        <div class="value good">
+        <div class="label">After</div>
+        <div class="value good" id="afterRate">
           97.1%
         </div>
-
       </div>
 
-
       <div class="metric">
-
-        <div class="label">
-          Exposure Before
+        <div class="label">Exposure Before</div>
+        <div class="value danger" id="exposureBefore">
+          ₹1,46,520
         </div>
-
-        <div class="value danger">
-          ₹1,84,200
-        </div>
-
       </div>
 
-
       <div class="metric">
-
-        <div class="label">
-          Exposure After
-        </div>
-
+        <div class="label">Exposure After</div>
         <div class="value good">
           ₹41,700
         </div>
-
       </div>
 
     </div>
@@ -562,7 +475,6 @@
   </div>
 
 
-  <!-- RUN SENTINEL -->
   <div class="button-area">
 
     <button id="runButton" onclick="runSentinel()">
@@ -586,7 +498,6 @@
   </div>
 
 
-  <!-- AUDIT -->
   <div class="card">
 
     <h2>📋 Verification & Audit Trail</h2>
@@ -622,14 +533,6 @@ async function runSentinel() {
 
   const steps = document.querySelectorAll(".step");
 
-  /*
-    IMPORTANT:
-    Replace YOUR_RENDER_URL with your actual Render URL.
-
-    Example:
-    https://your-service.onrender.com/api/v1/demo/novakart
-  */
-
   const API_URL =
     "https://sentinel-backend-3iqs.onrender.com/api/v1/demo/novakart";
 
@@ -640,8 +543,6 @@ async function runSentinel() {
   result.classList.remove("show");
 
 
-  // Reset steps
-
   steps.forEach(function(step) {
     step.classList.remove("active");
   });
@@ -649,24 +550,18 @@ async function runSentinel() {
 
   try {
 
-    /*
-      Call the live Sentinel backend
-    */
-
     const response = await fetch(API_URL);
 
 
     if (!response.ok) {
-      throw new Error("Backend request failed");
+      throw new Error(
+        "Backend returned HTTP " + response.status
+      );
     }
 
 
     const data = await response.json();
 
-
-    /*
-      Animate decision loop
-    */
 
     let i = 0;
 
@@ -692,11 +587,21 @@ async function runSentinel() {
 
 
         const analysis = data.analysis;
+        const simulation = data.simulation;
+        const policy = data.policy;
+        const verification = data.verification;
 
 
-        /*
-          Show live backend result
-        */
+        const probability =
+          (analysis.continued_disruption_probability * 100)
+          .toFixed(0);
+
+
+        const exposure =
+          Number(
+            analysis.estimated_revenue_exposure
+          ).toLocaleString("en-IN");
+
 
         resultText.innerHTML =
           "Payment success rate: " +
@@ -706,29 +611,79 @@ async function runSentinel() {
           "%).<br><br>" +
 
           "Continued disruption probability: " +
-          (analysis.continued_disruption_probability * 100).toFixed(0) +
+          probability +
           "%.<br><br>" +
 
           "Estimated revenue exposure: ₹" +
-          Number(
-            analysis.estimated_revenue_exposure
-          ).toLocaleString("en-IN");
+          exposure +
+          ".<br><br>" +
+
+          "Recommended action: <strong>" +
+          simulation.recommendation +
+          "</strong>.";
 
 
         result.classList.add("show");
 
 
-        /*
-          Update dashboard current rate
-        */
-
         document.getElementById("currentRate").innerText =
           analysis.current_success_rate + "%";
 
 
-        /*
-          Create live audit trail
-        */
+        document.getElementById("beforeRate").innerText =
+          verification.before_success_rate + "%";
+
+
+        document.getElementById("afterRate").innerText =
+          verification.after_success_rate + "%";
+
+
+        document.getElementById("exposureBefore").innerText =
+          "₹" +
+          Number(
+            analysis.estimated_revenue_exposure
+          ).toLocaleString("en-IN");
+
+
+        if (simulation.scenarios) {
+
+          simulation.scenarios.forEach(function(scenario) {
+
+            const amount =
+              "₹" +
+              Number(
+                scenario.estimated_exposure
+              ).toLocaleString("en-IN");
+
+
+            if (scenario.scenario === "Do nothing") {
+              document.getElementById(
+                "doNothingExposure"
+              ).innerText = amount;
+            }
+
+
+            if (scenario.scenario === "Intervention A") {
+              document.getElementById(
+                "interventionAExposure"
+              ).innerText = amount;
+            }
+
+
+            if (scenario.scenario === "Intervention B") {
+              document.getElementById(
+                "interventionBExposure"
+              ).innerText = amount;
+            }
+
+          });
+
+        }
+
+
+        document.getElementById("policyStatus").innerText =
+          policy.approved ? "APPROVED" : "REVIEW";
+
 
         audit.innerHTML =
 
@@ -737,24 +692,36 @@ async function runSentinel() {
           "[OBSERVE] anomaly detected<br>" +
 
           "[PREDICT] continuation probability = " +
-          (analysis.continued_disruption_probability * 100).toFixed(0) +
+          probability +
           "%<br>" +
 
           "[QUANTIFY] exposure = ₹" +
-          Number(
-            analysis.estimated_revenue_exposure
-          ).toLocaleString("en-IN") +
+          exposure +
           "<br>" +
 
           "[EXPLAIN] evidence signals analyzed<br>" +
 
-          "[SIMULATE] intervention scenarios evaluated<br>" +
+          "[SIMULATE] digital twin scenarios evaluated<br>" +
 
-          "[POLICY] deterministic policy check passed<br>" +
+          "[DECIDE] " +
+          simulation.recommendation +
+          " selected<br>" +
 
-          "[ACT] controlled action permitted<br>" +
+          "[POLICY] " +
+          (policy.approved
+            ? "approved"
+            : "human review required") +
+          "<br>" +
 
-          "[VERIFY] Sentinel analysis completed<br>" +
+          "[ACT] " +
+          data.execution.action +
+          " — " +
+          data.execution.execution_mode +
+          "<br>" +
+
+          "[VERIFY] success rate = " +
+          verification.after_success_rate +
+          "%<br>" +
 
           "[AUDIT] decision recorded";
 
@@ -768,10 +735,6 @@ async function runSentinel() {
 
 
   } catch (error) {
-
-    /*
-      Backend connection error
-    */
 
     resultText.innerHTML =
       "Sentinel could not connect to the backend.<br><br>" +
